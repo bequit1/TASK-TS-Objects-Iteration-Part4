@@ -57,9 +57,9 @@ const cars: Car[] = [
  *  getCarMake(cars[0]); // => "Toyota"
  */
 function getCarMake(car: Car): string {
-  // write your code here...
+  return car.make;
 
-  return ""; // replace empty string with what you see is fit
+  // replace empty string with what you see is fit
 }
 
 /**
@@ -72,9 +72,9 @@ function getCarMake(car: Car): string {
  *  isCarColorMatching(cars[1], "Blue"); // => false
  */
 function isCarColorMatching(car: Car, color: string): boolean {
-  // write your code here...
+  return car.color === color;
 
-  return false; // replace false with what you see is fit
+  // replace false with what you see is fit
 }
 
 /**
@@ -104,9 +104,10 @@ function addCar(
   year: number,
   color: string
 ): Car[] {
-  // write your code here...
+  const newCar: Car = { id, make, model, year, color };
+  cars.push(newCar);
 
-  return []; // replace empty array with what you see is fit
+  return cars; // replace empty array with what you see is fit
 }
 
 /**
@@ -119,9 +120,7 @@ function addCar(
  *  countCarsMadeInYear(cars, 2020); // => 2
  */
 function countCarsMadeInYear(cars: Car[], year: number): number {
-  // write your code here...
-
-  return Infinity; // replace Infinity with what you see is fit
+  return cars.filter((car) => car.year === year).length;
 }
 
 /**
@@ -136,9 +135,19 @@ function countCarsMadeInYear(cars: Car[], year: number): number {
  *    // => Array without the car having id 403.
  */
 function removeCarById(cars: Car[], id: number): Car[] {
-  // write your code here...
+  // const index = cars.find((car) => car.id === id);
+  // if (index !== -1) {
+  //   const removed = cars.splice(index);
+  //   cars.length = 0;
+  //   cars.push(updated);
+  //   return;
+  // }
 
-  return []; // replace empty array with what you see is fit
+  // return null; // replace empty array with what you see is fit
+
+  const newArr = cars.filter((car) => car.id !== id);
+
+  return newArr;
 }
 
 /**
@@ -161,7 +170,11 @@ function updateCarColor(
   id: number,
   newColor: string
 ): Car | "No Car Found" {
-  // write your code here...
+  const car = cars.find((car) => car.id === id);
+  if (car) {
+    car.color = newColor;
+    return car;
+  }
 
   return "No Car Found"; // replace "No Car Found" with what you see is fit
 }
